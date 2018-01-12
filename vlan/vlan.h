@@ -1,6 +1,4 @@
 /************************************************************************************
- * (c) Copyright 2017 CRRC.  All rights reserved.
- *
  *  bcm 53134 vlan base on 802.1Q head file
  *
  *  Created on: 2017-11-16

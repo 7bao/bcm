@@ -1,6 +1,4 @@
 /************************************************************************************
- * (c) Copyright 2017 CRRC.  All rights reserved.
- *
  *  bcm 53134 chip operation
  *
  *  Created on: 2017-08-16
