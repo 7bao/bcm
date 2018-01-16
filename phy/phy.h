@@ -183,6 +183,10 @@ typedef struct _BCM_REG_ADDR_T
 
 typedef struct reg
 {
+	BCM_SPI_PAGE_T spi_page;
+	BCM_SPI_OFFSET_T spi_offset;
+	BCM_REG_T reg_value;
+
 	BCM_REG_T ( * register_read )(BCM_SPI_PAGE_T, BCM_SPI_OFFSET_T );
 	BCM_REG_T ( * register_write)(BCM_SPI_PAGE_T, BCM_SPI_OFFSET_T, BCM_REG_T);
 }bcm_chip_t;
@@ -190,7 +194,7 @@ typedef struct reg
 typedef struct func
 {
 	/*operation data*/
-	BCM_REG_ADDR_T function_address;
+	BCM_REG_ADDR_T address;
 
 	/*operation*/
 	BCM_REG_T     ( * function_read )( BCM_REG_ADDR_T * );

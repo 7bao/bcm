@@ -79,7 +79,7 @@ static BCM_FUNC_OP_T bcm_vlan_table_ctrl_init_finish();
 /*description: vlan table write index
 /*param 0: index nubmer 0-4095,0 and 4095 no effect
 */
-static BCM_FUNC_OP_T bcm_vlan_table_index_write(BCM_VLAN_VTBL_ADDR_T index);
+static BCM_FUNC_OP_T bcm_vlan_table_index_write(BCM_REG_T index);
 
 /****************************************************************************************************/
 /*description: vlan table judge control finish
@@ -173,75 +173,6 @@ static BCM_FUNC_OP_T bcm_vlan_default_tag_info_write(BCM_PORT_T port_number, BCM
 */
 static BCM_REG_T bcm_vlan_pvid_read( BCM_PORT_T port_number );
 
-/****************************************************************************************************/
-/*description: write change 1Q vid
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_0_change_1Q_VID_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write change 1Q vid out tag
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_0_change_1Q_VID_OUT_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write change 1Q vid in tag
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_0_change_1Q_VID_IN_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write IPMC frame tag
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_IPMC_frame_tag_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write IPMC frame forward
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_IPMC_frame_fwd_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write multicast frame tag map
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_mcast_frame_tag_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write multicast frame check forward map
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_mcast_frame_fwd_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write multicast frame tag map
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_2_GG_frame_tag_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write multicast frame check forward map
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_2_GG_frame_check_fwdmap_write( BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: write mii frame check forward map
-/*param 0    : work mode
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_2_mii_frame_check_fwdmap_write( BCM_REG_T mode );
 
 /****************************************************************************************************/
 /*description: write vlan multi port address control
@@ -259,20 +190,6 @@ static BCM_FUNC_OP_T bcm_vlan_multi_port_addr_ctrl_write(BCM_PORT_T port_number,
 static BCM_FUNC_OP_T bcm_vlan_multi_port_addr_ctrl_read(BCM_PORT_T port_number);
 
 /****************************************************************************************************/
-/*description: write vlan egress vid remark table access
-/*param 0    : table list
-/*return     : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_egress_VID_remark_table_access_write( BCM_VLAN_EGRESS_VID_RMK_TBL_ACS_T *table );
-
-/****************************************************************************************************/
-/*description : vlan table entry untag map write
-/*param 0     : vlan table entry untag map
-/*return      : operation status
-*/
-static BCM_FUNC_OP_T bcm_vlan_egress_VID_remark_table_data_write( BCM_VLAN_EGRESS_VID_RMK_TBL_DAT_T *data );
-
-/****************************************************************************************************/
 /*description: write vlan mst table
 /*param 0    : port number
 /*param 1    : work mode
@@ -286,14 +203,6 @@ static BCM_FUNC_OP_T bcm_vlan_mst_table_write(BCM_PORT_T port_number, BCM_REG_T 
 /*return     : operation status
 */
 static BCM_REG_T bcm_vlan_mst_table_read( BCM_PORT_T port_number );
-
-/****************************************************************************************************/
-/*description: multi write vlan table
-/*param 0    : multi vlan table entry data
-/*param 1    : vlan table entry index list
-/*return     : function status
-*/
-static void bcm_vlan_table_multi_write( void *vtbl_entry_data,uint32_t count);
 
 /****************************************************************************************************/
 /*description: single write vlan table
@@ -331,36 +240,6 @@ static BCM_REG_T bcm_vlan_join_all_vlan_en(BCM_PORT_T port_number, BCM_REG_T mod
 /*return     : function status
 */
 static BCM_REG_T bcm_vlan_join_all_vlan_en_read(BCM_PORT_T port_number);
-
-/****************************************************************************************************/
-/*description: wrtie double tag function
-/*param 0    : enable or disable
-/*return     : function status
-*/
-static BCM_REG_T bcm_vlan_double_tag_write(BCM_REG_T enable);
-
-/****************************************************************************************************/
-/*description: read double tag function
-/*param 0    : N/A
-/*return     : function status
-*/
-static BCM_REG_T bcm_vlan_double_tag_read();
-
-/****************************************************************************************************/
-/*description: write multi port type
-/*param 0    : vlan table entry untag map
-/*return     : status
-*/
-static BCM_REG_T bcm_vlan_ISP_port_write(BCM_PORT_T port_number, BCM_REG_T mode );
-
-/****************************************************************************************************/
-/*description: read mulit port is ISP or customer port
-/*param 0    : Mport number
-/*return     : status
-*/
-static BCM_REG_T bcm_vlan_ISP_port_read( BCM_PORT_T port_number );
-
-
 
 void bcm_vlan()
 {
@@ -671,62 +550,46 @@ static BCM_REG_T bcm_vlan_table_single_read( BCM_PORT_T port_num, BCM_REG_T type
 */
 static BCM_REG_T bcm_vlan_enable_write( BCM_REG_T mode )
 {
-	/*register value*/
-	BCM_REG_ADDR_T vlan_enable_reg_value;
+	BCM_REG_T ret_mode;
+	bcm_func_t * vlan_enable;
 
-	vlan_enable_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_enable_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
-	vlan_enable_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_ENABLE;
-	vlan_enable_reg_value.bit_wide =   BCM_CHIP_BIT_1;
+	vlan_enable = (bcm_func_t *)malloc(sizeof(bcm_func_t));
 
-	return chip_func_write( &vlan_enable_reg_value, mode );
+	vlan_enable->address.func_value = mode;
+
+	vlan_enable->address.spi_page =   BCM_SPI_PAGE_VLAN;
+	vlan_enable->address.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
+	vlan_enable->address.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_ENABLE;
+	vlan_enable->address.bit_wide =   BCM_CHIP_BIT_1;
+
+	vlan_enable->function_write = chip_func_write;
+
+	ret_mode = vlan_enable->function_write( &vlan_enable->address, vlan_enable->address.func_value );
+	free(vlan_enable);
+
+	return ret_mode;
 }
-
-//static BCM_REG_T bcm_vlan_enable_read()
-//{
-//	BCM_REG_T mode;
-//
-//	/*register value*/
-//	BCM_REG_ADDR_T vlan_enable_reg_value;
-//
-//	vlan_enable_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-//	vlan_enable_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
-//	vlan_enable_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_ENABLE;
-//	vlan_enable_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-//
-//	mode = chip_func_read( &vlan_enable_reg_value );
-//
-//	switch ( mode )
-//	{
-//		case VLAN_ENABLE:
-//			printf("VLAN Enable\n");
-//			break;
-//		case VLAN_DISABLE:
-//			printf("VLAN Disable\n");
-//			break;
-//		default:
-//			printf("error\n");
-//	}
-//
-//	return mode;
-//}
 
 static BCM_REG_T bcm_vlan_enable_read()
 {
-	bcm_func_t vlan_enable;
+	BCM_REG_T vlan_eanble_mode;
 
-	vlan_enable.function_address.spi_page = BCM_SPI_PAGE_VLAN;
-	vlan_enable.function_address.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
-	vlan_enable.function_address.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_ENABLE;
-	vlan_enable.function_address.bit_wide = BCM_CHIP_BIT_1;
+	bcm_func_t * vlan_enable;
 
-	vlan_enable.function_read = chip_func_read;
-	vlan_enable.function_write = chip_func_write;
+	vlan_enable = (bcm_func_t *)malloc(sizeof(bcm_func_t));
 
-	vlan_enable.function_address.func_value =
-	vlan_enable.function_read(&vlan_enable.function_address);
+	vlan_enable->address.spi_page = BCM_SPI_PAGE_VLAN;
+	vlan_enable->address.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
+	vlan_enable->address.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_ENABLE;
+	vlan_enable->address.bit_wide = BCM_CHIP_BIT_1;
 
-	switch ( vlan_enable.function_address.func_value )
+	vlan_enable->function_read = chip_func_read;
+	vlan_enable->function_write = chip_func_write;
+
+	vlan_enable->address.func_value =
+	vlan_enable->function_read(&vlan_enable->address);
+
+	switch ( vlan_enable->address.func_value )
 	{
 		case VLAN_ENABLE:
 			printf("VLAN Enable\n");
@@ -737,75 +600,125 @@ static BCM_REG_T bcm_vlan_enable_read()
 		default:
 			printf("error\n");
 	}
-	return 	vlan_enable.function_address.func_value;
+	vlan_eanble_mode = vlan_enable->address.func_value;
+	free(vlan_enable);
+	return vlan_eanble_mode;
 }
 
 /*normal mode*/
 /*description: vlan table initialization control*/
 static BCM_FUNC_OP_T bcm_vlan_table_ctrl_init()
 {
-	BCM_REG_ADDR_T vlan_table_ctrl_rw_reg_value;
-	BCM_REG_T init_value = VLAN_TBL_INIT_START;
+	BCM_FUNC_OP_T ret;
 
-	vlan_table_ctrl_rw_reg_value.spi_page =   BCM_SPI_PAGE_VTBL;
-	vlan_table_ctrl_rw_reg_value.spi_offset = BCM_SPI_OFFSET_VTBL_CTRL;
-	vlan_table_ctrl_rw_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_CTRL_STDN;
-	vlan_table_ctrl_rw_reg_value.bit_wide =   BCM_CHIP_BIT_1;
+	bcm_func_t * vlan_table_ctrl;
 
-	return chip_func_write( &vlan_table_ctrl_rw_reg_value, init_value );
+	vlan_table_ctrl = (bcm_func_t *)malloc(sizeof(bcm_func_t));
+
+	vlan_table_ctrl->address.spi_page   = BCM_SPI_PAGE_VTBL;
+	vlan_table_ctrl->address.spi_offset = BCM_SPI_OFFSET_VTBL_CTRL;
+	vlan_table_ctrl->address.bit_offset = BCM_BIT_OFFSET_VTBL_CTRL_STDN;
+	vlan_table_ctrl->address.bit_wide   = BCM_CHIP_BIT_1;
+
+	vlan_table_ctrl->function_write = chip_func_write;
+
+	vlan_table_ctrl->address.func_value = VLAN_TBL_INIT_START;
+
+	ret = vlan_table_ctrl->function_write( &vlan_table_ctrl->address, vlan_table_ctrl->address.func_value );
+
+	free(vlan_table_ctrl);
+
+	return ret;
 }
 
 /*description: vlan table read or write control*/
 static BCM_FUNC_OP_T bcm_vlan_table_ctrl_rw_write(BCM_REG_T rw_value)
 {
-	BCM_REG_ADDR_T vlan_table_ctrl_rw_reg_value;
+	BCM_FUNC_OP_T ret_op;
+	bcm_func_t * vlan_table_ctrl;
 
-	vlan_table_ctrl_rw_reg_value.spi_page =   BCM_SPI_PAGE_VTBL;
-	vlan_table_ctrl_rw_reg_value.spi_offset = BCM_SPI_OFFSET_VTBL_CTRL;
-	vlan_table_ctrl_rw_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_CTRL_RWCL;
-	vlan_table_ctrl_rw_reg_value.bit_wide =   BCM_CHIP_BIT_2;
+	vlan_table_ctrl = (bcm_func_t * )malloc(sizeof(bcm_func_t));
 
-	return chip_func_write( &vlan_table_ctrl_rw_reg_value, rw_value );
+	vlan_table_ctrl->address.func_value = rw_value;
+
+	vlan_table_ctrl->address.spi_page =   BCM_SPI_PAGE_VTBL;
+	vlan_table_ctrl->address.spi_offset = BCM_SPI_OFFSET_VTBL_CTRL;
+	vlan_table_ctrl->address.bit_offset = BCM_BIT_OFFSET_VTBL_CTRL_RWCL;
+	vlan_table_ctrl->address.bit_wide =   BCM_CHIP_BIT_2;
+
+	vlan_table_ctrl->function_write = chip_func_write;
+
+	ret_op = vlan_table_ctrl->function_write( &vlan_table_ctrl->address, vlan_table_ctrl->address.func_value );
+
+	free(vlan_table_ctrl);
+
+	return ret_op;
 }
 
 /*description: vlan table judge control finish*/
 static BCM_FUNC_OP_T bcm_vlan_table_ctrl_init_finish()
 {
-	BCM_REG_T mode;
+	BCM_FUNC_OP_T op_ret;
 
-	BCM_REG_ADDR_T ctrl_init_reg_value;
+	bcm_func_t * vlan_table_ctrl_init;
 
-	ctrl_init_reg_value.spi_page =   BCM_SPI_PAGE_VTBL;
-	ctrl_init_reg_value.spi_offset = BCM_SPI_OFFSET_VTBL_CTRL;
-	ctrl_init_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_CTRL_STDN;
-	ctrl_init_reg_value.bit_wide =   BCM_CHIP_BIT_1;
+	vlan_table_ctrl_init = (bcm_func_t *)malloc(sizeof(bcm_func_t));
 
-	mode = chip_func_read( &ctrl_init_reg_value );
-	#ifdef VLAN_DEBUG
-	switch ( mode )
+	BCM_REG_ADDR_T vlan_table_ctrl_address =
 	{
-		case VLAN_TBL_INIT_START:
-			printf("Initialization start\n");
-			break;
-		case VLAN_TBL_INIT_FINISH:
+		BCM_SPI_PAGE_VTBL,
+		BCM_SPI_OFFSET_VTBL_CTRL,
+		BCM_BIT_OFFSET_VTBL_CTRL_STDN,
+		BCM_CHIP_BIT_1,
+		0
+	};
 
-			printf("Initialization finish\n");
+	memcpy(&vlan_table_ctrl_init->address,&vlan_table_ctrl_address,sizeof(BCM_REG_ADDR_T));
 
-			break;
-		default:
-			printf("error\n");
-	}
-	#endif
+	vlan_table_ctrl_init->function_read = chip_func_read;
 
-	return mode;
+	vlan_table_ctrl_init->address.func_value = vlan_table_ctrl_init->function_read( &vlan_table_ctrl_init->address );
+
+	op_ret = vlan_table_ctrl_init->address.func_value;
+
+	free(vlan_table_ctrl_init);
+
+	return op_ret;
 }
 
 
 /*structure mode*/
 /*description: vlan table write index*/
-static BCM_FUNC_OP_T bcm_vlan_table_index_write(BCM_VLAN_VTBL_ADDR_T index)
+//static BCM_FUNC_OP_T bcm_vlan_table_index_write(BCM_VLAN_VTBL_ADDR_T index)
+//{
+//	return chip_register_write(BCM_SPI_PAGE_VTBL, BCM_SPI_OFFSET_VTBL_INDEX, (uint64_t)index);
+//}
+
+static BCM_FUNC_OP_T bcm_vlan_table_index_write(BCM_REG_T index)
 {
-	return chip_register_write(BCM_SPI_PAGE_VTBL, BCM_SPI_OFFSET_VTBL_INDEX, (uint64_t)index);
+	BCM_FUNC_OP_T op_ret;
+
+	bcm_func_t * vlan_table_index;
+
+	vlan_table_index = (bcm_func_t *)malloc(sizeof(bcm_func_t));
+
+	vlan_table_index->address.spi_page = BCM_SPI_PAGE_VTBL;
+	vlan_table_index->address.spi_offset = BCM_SPI_OFFSET_VTBL_INDEX;
+
+	vlan_table_index->address.bit_offset = BCM_BIT_OFFSET_VTBL_INDEX;
+
+	/*this bits wide is 12,but 8bits is enough*/
+	vlan_table_index->address.bit_wide = BCM_CHIP_BIT_8;
+
+	vlan_table_index->address.func_value = index;
+
+	vlan_table_index->function_write = chip_func_write;
+
+	op_ret = vlan_table_index->function_write(&vlan_table_index->address, vlan_table_index->address.func_value);
+
+	free(vlan_table_index);
+
+	return op_ret;
 }
 
 /*structure mode*/
@@ -825,66 +738,89 @@ static BCM_FUNC_OP_T bcm_vlan_table_entry_write(BCM_VLAN_VTBL_FUNC_T * entry)
 /*description: vlan table entry mspt index write*/
 static BCM_FUNC_OP_T bcm_vlan_table_entry_mspt_index_write(BCM_REG_T mspt_index_number)     //default
 {
-	BCM_REG_ADDR_T entry_mspt_index_reg_value;
+    BCM_FUNC_OP_T op_ret;
+	bcm_func_t * mspt_index;
 
-	entry_mspt_index_reg_value.spi_page =   BCM_SPI_PAGE_VTBL;
-	entry_mspt_index_reg_value.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
-	entry_mspt_index_reg_value.bit_offset =	BCM_BIT_OFFSET_VTBL_ENTRY_MSTP_INDEX;
-	entry_mspt_index_reg_value.bit_wide =   BCM_CHIP_BIT_1;
+	mspt_index = (bcm_func_t *)malloc(sizeof(bcm_func_t));
 
-	return chip_func_write( &entry_mspt_index_reg_value, mspt_index_number );
+	mspt_index->address.spi_page =BCM_SPI_PAGE_VTBL;
+    mspt_index->address.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
+    mspt_index->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_MSTP_INDEX;
+    mspt_index->address.bit_wide = BCM_CHIP_BIT_1;
+    mspt_index->function_write = chip_func_write;
+
+    mspt_index->address.func_value = mspt_index_number;
+
+	op_ret = chip_func_write( &mspt_index->address, mspt_index->address.func_value  );
+    free(mspt_index);
+    return op_ret;
 }
 
 /*description: vlan table entry forward map write*/
 static BCM_FUNC_OP_T bcm_vlan_table_entry_fwd_map_write(BCM_REG_T entry_fwd_map)
 {
-	BCM_REG_ADDR_T entry_fwd_map_reg_value;
+    BCM_FUNC_OP_T op_ret;
+    bcm_func_t * fwd_map;
 
-	entry_fwd_map_reg_value.spi_page =   BCM_SPI_PAGE_VTBL;
-	entry_fwd_map_reg_value.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
-	entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP;
-	entry_fwd_map_reg_value.bit_wide =   BCM_CHIP_BIT_8;
+	fwd_map = (bcm_func_t *)malloc(sizeof(bcm_func_t));
 
-	return chip_func_write( &entry_fwd_map_reg_value, entry_fwd_map );
+    fwd_map->address.spi_page =   BCM_SPI_PAGE_VTBL;
+	fwd_map->address.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
+	fwd_map->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP;
+	fwd_map->address.bit_wide =   BCM_CHIP_BIT_8;
+    
+    fwd_map->address.func_value = entry_fwd_map;
+    fwd_map->function_write = chip_func_write;
+
+	op_ret = fwd_map->function_write( &fwd_map->address, fwd_map->address.func_value );
+    free(fwd_map);
+    return op_ret;
 }
 
-static BCM_FUNC_OP_T bcm_vlan_table_entry_fwd_map_port_write(BCM_PORT_T port_num, BCM_REG_T mode)
+static BCM_FUNC_OP_T bcm_vlan_table_entry_fwd_port_write(BCM_PORT_T port_num, BCM_REG_T mode)
 {
-	BCM_REG_ADDR_T entry_fwd_map_reg_value;
+	BCM_FUNC_OP_T op_ret;
 
-	entry_fwd_map_reg_value.spi_page =   BCM_SPI_PAGE_VTBL;
-	entry_fwd_map_reg_value.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
+    bcm_func_t * fwd_port;
+    
+    fwd_port = (bcm_func_t * )malloc(sizeof(bcm_func_t));
 
-	entry_fwd_map_reg_value.bit_wide =   BCM_CHIP_BIT_1;
+    fwd_port->address.spi_page =   BCM_SPI_PAGE_VTBL;
+	fwd_port->address.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
+	fwd_port->address.bit_wide =   BCM_CHIP_BIT_1;
+    fwd_port->address.func_value = mode;
 
+    fwd_port->function_write = chip_func_write;
 	switch(port_num)
 	{
 		case PORT_0:
-			entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_0;
+			fwd_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_0;
 			break;
 		case PORT_1:
-			entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_1;
+			fwd_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_1;
 			break;
 		case PORT_2:
-			entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_2;
+			fwd_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_2;
 			break;
 		case PORT_3:
-			entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_3;
+			fwd_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_3;
 			break;
 		case PORT_4:
-			entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_4;
+			fwd_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_4;
 			break;
 		case PORT_5:
-			entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_5;
+			fwd_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_5;
 			break;
 		case IMP:
-			entry_fwd_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_8;
+			fwd_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_8;
 			break;
 		default :
 			perror("forward map port");
 	}
 
-	return chip_func_write( &entry_fwd_map_reg_value, mode );
+	op_ret = fwd_port->function_write( &fwd_port->address, fwd_port->address.func_value ) ;
+    free(fwd_port);
+    return op_ret;
 }
 
 static void bcm_vlan_fwd_port_write(uint32_t num_port,...)
@@ -898,48 +834,56 @@ static void bcm_vlan_fwd_port_write(uint32_t num_port,...)
 	for(i = 0; i < num_port; i++)
 	{
 		port_num_temp = va_arg(var_arg,BCM_PORT_T);
-		bcm_vlan_table_entry_fwd_map_port_write(port_num_temp, PORT_FWD);
+		bcm_vlan_table_entry_fwd_port_write(port_num_temp, PORT_FWD);
 	}
 	va_end(var_arg);
 }
 
-static BCM_FUNC_OP_T bcm_vlan_table_entry_tag_map_port_write(BCM_PORT_T port_num, BCM_REG_T mode)
+static BCM_FUNC_OP_T bcm_vlan_table_entry_tag_port_write(BCM_PORT_T port_num, BCM_REG_T mode)
 {
-	BCM_REG_ADDR_T entry_tag_map_reg_value;
+	BCM_FUNC_OP_T op_ret;
 
-	entry_tag_map_reg_value.spi_page =   BCM_SPI_PAGE_VTBL;
-	entry_tag_map_reg_value.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
+    bcm_func_t * tag_port;
 
-	entry_tag_map_reg_value.bit_wide =   BCM_CHIP_BIT_1;
+    tag_port = (bcm_func_t *)malloc(sizeof(bcm_func_t));
+
+    tag_port->address.spi_page =   BCM_SPI_PAGE_VTBL;
+    tag_port->address.spi_offset = BCM_SPI_OFFSET_VTBL_ENTRY;
+
+	tag_port->address.bit_wide =   BCM_CHIP_BIT_1;
+    tag_port->address.func_value = mode;
+    tag_port->function_write = chip_func_write;
 
 	switch(port_num)
 	{
 		case PORT_0:
-			entry_tag_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_0;
+			tag_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_0;
 			break;
 		case PORT_1:
-			entry_tag_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_1;
+			tag_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_1;
 			break;
 		case PORT_2:
-			entry_tag_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_2;
+			tag_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_2;
 			break;
 		case PORT_3:
-			entry_tag_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_3;
+			tag_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_3;
 			break;
 		case PORT_4:
-			entry_tag_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_4;
+			tag_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_4;
 			break;
 		case PORT_5:
-			entry_tag_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_5;
+			tag_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_5;
 			break;
 		case IMP:
-			entry_tag_map_reg_value.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_8;
+			tag_port->address.bit_offset = BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MAP_PORT_8;
 			break;
 		default :
 			perror("forward map port");
 	}
 
-	return chip_func_write( &entry_tag_map_reg_value, mode );
+	op_ret = tag_port->function_write( &tag_port->address, tag_port->address.func_value );
+    free(tag_port);
+    return op_ret;
 }
 
 static void bcm_vlan_tag_port_write(uint32_t num_port,...)
@@ -953,7 +897,7 @@ static void bcm_vlan_tag_port_write(uint32_t num_port,...)
 	for(i = 0; i < num_port; i++)
 	{
 		port_num_temp = va_arg(var_arg,BCM_PORT_T);
-		bcm_vlan_table_entry_tag_map_port_write(port_num_temp, PORT_UNTAG);
+		bcm_vlan_table_entry_tag_port_write(port_num_temp, PORT_UNTAG);
 	}
 	va_end(var_arg);
 }
@@ -1203,13 +1147,16 @@ BCM_FUNC_OP_T bcm_vlan_default_tag_info_write(BCM_PORT_T port_number, BCM_VLAN_T
 
 BCM_FUNC_OP_T bcm_vlan_tag_info_pvid_write(BCM_PORT_T port_number, BCM_VLAN_PVID_T vid )
 {
-	BCM_REG_ADDR_T tag_info_pvid_reg_value;
+	BCM_FUNC_OP_T ret;
+	bcm_func_t * tag_info;
 
-	tag_info_pvid_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	tag_info_pvid_reg_value.bit_offset = BCM_BIT_OFFSET_TAG_VID;
+	tag_info = (bcm_func_t *)malloc(sizeof(bcm_func_t));
+
+	tag_info->address.spi_page = BCM_SPI_PAGE_VLAN;
+	tag_info->address.bit_offset = BCM_BIT_OFFSET_TAG_VID;
 
 	/*fixed vlan id number range is 1 to 6,use bits are enough*/
-	tag_info_pvid_reg_value.bit_wide =   BCM_CHIP_BIT_3;
+	tag_info->address.bit_wide = BCM_CHIP_BIT_3;
 
 	if(vid > VLAN_5)
 	{
@@ -1219,30 +1166,34 @@ BCM_FUNC_OP_T bcm_vlan_tag_info_pvid_write(BCM_PORT_T port_number, BCM_VLAN_PVID
 	switch ( port_number )
 	{
 		case PORT_0:
-			tag_info_pvid_reg_value.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_0;
+			tag_info->address.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_0;
 			break;
 		case PORT_1:
-			tag_info_pvid_reg_value.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_1;
+			tag_info->address.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_1;
 			break;
 		case PORT_2:
-			tag_info_pvid_reg_value.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_2;
+			tag_info->address.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_2;
 			break;
 		case PORT_3:
-			tag_info_pvid_reg_value.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_3;
+			tag_info->address.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_3;
 			break;
 		case PORT_4:
-			tag_info_pvid_reg_value.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_4;
+			tag_info->address.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_4;
 			break;
 		case PORT_5:
-			tag_info_pvid_reg_value.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_5;
+			tag_info->address.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_5;
 			break;
 		case IMP:
-			tag_info_pvid_reg_value.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_IMP;
+			tag_info->address.spi_offset = ( BCM_PORT_REG_T )BCM_SPI_OFFSET_VID_PORT_IMP;
 			break;
 		default :
 			perror("pvid");
 	}
-	return chip_func_write( &tag_info_pvid_reg_value,(BCM_REG_T)vid);
+	ret = chip_func_write( &tag_info->address,(BCM_REG_T)vid);
+
+	free(tag_info);
+
+	return ret;
 }
 
 static BCM_FUNC_OP_T bcm_vlan_tag_info_pri_write(BCM_PORT_T port_number, BCM_VLAN_T vid )
@@ -1343,417 +1294,92 @@ BCM_FUNC_OP_T bcm_vlan_tag_info_write(BCM_PORT_T port_number, BCM_VLAN_TAG_INFO_
 static BCM_REG_T bcm_vlan_pvid_read(BCM_PORT_T port_number )
 {
 	bcm_func_t pvid;
-	pvid.function_address.spi_page = BCM_SPI_PAGE_VLAN;
-	pvid.function_address.bit_wide = BCM_CHIP_BIT_8;
-	pvid.function_address.bit_offset = BCM_BIT_OFFSET_TAG_VID;
+	pvid.address.spi_page = BCM_SPI_PAGE_VLAN;
+	pvid.address.bit_wide = BCM_CHIP_BIT_8;
+	pvid.address.bit_offset = BCM_BIT_OFFSET_TAG_VID;
 
 	pvid.function_read = chip_func_read;
 
 	switch ( port_number )
 	{
 		case PORT_0:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_0;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_0;
 			break;
 		case PORT_1:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_1;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_1;
 			break;
 		case PORT_2:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_2;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_2;
 			break;
 		case PORT_3:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_3;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_3;
 			break;
 		case PORT_4:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_4;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_4;
 			break;
 		case PORT_5:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_5;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_5;
 			break;
 		case PORT_7:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_7;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_7;
 			break;
 		case IMP:
-			pvid.function_address.spi_offset = BCM_SPI_OFFSET_VID_PORT_IMP;
+			pvid.address.spi_offset = BCM_SPI_OFFSET_VID_PORT_IMP;
 			break;
 	}
-	pvid.function_address.func_value = pvid.function_read(&pvid.function_address);
+	pvid.address.func_value = pvid.function_read(&pvid.address);
 
-	return pvid.function_address.func_value;
+	return pvid.address.func_value;
 
-}
-
-/*enable or disable*/
-/*description: write change 1Q vid*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_0_change_1Q_VID_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_change_1Q_VID_reg_value;
-
-	vlan_change_1Q_VID_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_change_1Q_VID_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
-	vlan_change_1Q_VID_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_1Q_CHANGE;
-	vlan_change_1Q_VID_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_change_1Q_VID_reg_value, mode );
-}
-
-/*description: write change 1Q vid out tag*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_0_change_1Q_VID_OUT_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_change_1Q_VID_reg_value;
-
-	vlan_change_1Q_VID_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_change_1Q_VID_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
-	vlan_change_1Q_VID_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_1Q_CHANGE_OUT;
-	vlan_change_1Q_VID_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_change_1Q_VID_reg_value, mode );
-}
-
-/*description: write change 1Q vid in tag*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_0_change_1Q_VID_IN_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_change_1Q_VID_reg_value;
-
-	vlan_change_1Q_VID_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_change_1Q_VID_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_0;
-	vlan_change_1Q_VID_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_VLAN_1Q_CHANGE_IN;
-	vlan_change_1Q_VID_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_change_1Q_VID_reg_value, mode );
-}
-
-
-/*description: write IPMC frame tag*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_IPMC_frame_tag_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_ctrl_1_IPMC_frame_tag_reg_value;
-
-	vlan_ctrl_1_IPMC_frame_tag_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_ctrl_1_IPMC_frame_tag_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_1;
-	vlan_ctrl_1_IPMC_frame_tag_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_IPMC_TAG_CTRL;
-	vlan_ctrl_1_IPMC_frame_tag_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_ctrl_1_IPMC_frame_tag_reg_value, mode );
-}
-
-/*description: write IPMC frame forward*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_IPMC_frame_fwd_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_ctrl_1_IPMC_frame_fwd_reg_value;
-
-	vlan_ctrl_1_IPMC_frame_fwd_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_ctrl_1_IPMC_frame_fwd_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_1;
-	vlan_ctrl_1_IPMC_frame_fwd_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_IPMC_FWD_CTRL;
-	vlan_ctrl_1_IPMC_frame_fwd_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_ctrl_1_IPMC_frame_fwd_reg_value, mode );
-}
-
-/*description: write multicast frame tag map*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_mcast_frame_tag_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_ctrl_1_mcast_frame_tag_reg_value;
-
-	vlan_ctrl_1_mcast_frame_tag_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_ctrl_1_mcast_frame_tag_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_1;
-	vlan_ctrl_1_mcast_frame_tag_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_MULTICAST_TAG_CTRL;
-	vlan_ctrl_1_mcast_frame_tag_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_ctrl_1_mcast_frame_tag_reg_value, mode );
-}
-
-/*description: write multicast frame check forward map*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_1_mcast_frame_fwd_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_ctrl_1_mcast_frame_fwd_reg_value;
-
-	vlan_ctrl_1_mcast_frame_fwd_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_ctrl_1_mcast_frame_fwd_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_1;
-	vlan_ctrl_1_mcast_frame_fwd_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_MULTICAST_FWD_CTRL;
-	vlan_ctrl_1_mcast_frame_fwd_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_ctrl_1_mcast_frame_fwd_reg_value, mode );
-}
-
-/*GG = GMRP,GVRP*/
-/*description: write multicast frame tag map*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_2_GG_frame_tag_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_ctrl_2_GG_frame_tag_reg_value;
-
-	vlan_ctrl_2_GG_frame_tag_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_ctrl_2_GG_frame_tag_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_2;
-	vlan_ctrl_2_GG_frame_tag_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_GG_TAG_CTRL;
-	vlan_ctrl_2_GG_frame_tag_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_ctrl_2_GG_frame_tag_reg_value, mode );
-}
-
-/*description: write multicast frame check forward map*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_2_GG_frame_check_fwdmap_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_ctrl_2_GG_frame_check_fwdmap_value;
-
-	vlan_ctrl_2_GG_frame_check_fwdmap_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_ctrl_2_GG_frame_check_fwdmap_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_2;
-	vlan_ctrl_2_GG_frame_check_fwdmap_value.bit_offset = BCM_VLAN_BIT_OFFSET_GG_CHK_FWD_MAP;
-	vlan_ctrl_2_GG_frame_check_fwdmap_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_ctrl_2_GG_frame_check_fwdmap_value, mode );
-}
-
-/*description: write mii frame check forward map*/
-static BCM_FUNC_OP_T bcm_vlan_ctrl_2_mii_frame_check_fwdmap_write( BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T vlan_ctrl_2_mii_frame_check_fwdmap_value;
-
-	vlan_ctrl_2_mii_frame_check_fwdmap_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	vlan_ctrl_2_mii_frame_check_fwdmap_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_2;
-	vlan_ctrl_2_mii_frame_check_fwdmap_value.bit_offset = BCM_VLAN_BIT_OFFSET_MII_CHK_FWD_MAP;
-	vlan_ctrl_2_mii_frame_check_fwdmap_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	return chip_func_write( &vlan_ctrl_2_mii_frame_check_fwdmap_value, mode );
-}
-
-/*this is a abnormal write function style because of MPort reference switch in the register*/
-/*description: write vlan multi port address control*/
-static BCM_FUNC_OP_T bcm_vlan_multi_port_addr_ctrl_write(BCM_PORT_T port_number, BCM_REG_T mode)
-{
-	BCM_REG_ADDR_T multi_port_addr_reg_value;
-
-	multi_port_addr_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	multi_port_addr_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_MULTI_PORT_ADDR_CTL;
-
-	multi_port_addr_reg_value.bit_wide = BCM_CHIP_BIT_1;
-
-	if ((mode ==  MPORT_MAP_TAG) || (mode == MPORT_MAP_UNTAG))
-	{	
-        switch ( port_number )
-		{
-			case PORT_5:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_5_TAG;
-				break;
-			case PORT_4:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_4_TAG;
-				break;
-			case PORT_3:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_3_TAG;
-				break;
-			case PORT_2:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_2_TAG;
-				break;
-			case PORT_1:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_1_TAG;
-				break;
-			case PORT_0:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_0_TAG;
-				break;
-			default :
-				perror("NO port");
-		}
-
-		if(MPORT_MAP_UNTAG)
-		{
-			mode = 1;
-		}
-		else
-		{
-			mode = 0;
-		}
-	}
-
-	if((mode == MPORT_MAP_FWD) || (mode == MPORT_MAP_UNFWD))
-	{
-		switch ( port_number )
-
-		{
-			case PORT_5:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_5_FWD;
-				break;
-			case PORT_4:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_4_FWD;
-				break;
-			case PORT_3:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_3_FWD;
-				break;
-			case PORT_2:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_2_FWD;
-				break;
-			case PORT_1:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_1_FWD;
-				break;
-			case PORT_0:
-				multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_0_FWD;
-				break;
-			default :
-				perror("NO port");
-		}
-
-		printf("fw:%d\n",multi_port_addr_reg_value.bit_offset);
-
-		if(MPORT_MAP_FWD)
-		{
-			mode = 1;
-		}
-		else
-		{
-			mode = 0;
-		}
-	}
-
-	return chip_func_write( &multi_port_addr_reg_value, mode );
-}
-
-/*this is a abnormal write function style because of MPort reference switch in the register*/
-/*description: read vlan multi port address control*/
-static BCM_FUNC_OP_T bcm_vlan_multi_port_addr_ctrl_read(BCM_PORT_T port_number)
-{
-	BCM_REG_ADDR_T multi_port_addr_reg_value;
-
-	multi_port_addr_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	multi_port_addr_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_MULTI_PORT_ADDR_CTL;
-
-	multi_port_addr_reg_value.bit_wide = BCM_CHIP_BIT_1;
-
-	switch ( port_number )
-	{
-		case PORT_5:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_5_TAG;
-			break;
-		case PORT_4:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_4_TAG;
-			break;
-		case PORT_3:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_3_TAG;
-			break;
-		case PORT_2:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_2_TAG;
-			break;
-		case PORT_1:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_1_TAG;
-			break;
-		case PORT_0:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_0_TAG;
-			break;
-		default :
-			perror("NO port");
-	}
-
-	switch(chip_func_read( &multi_port_addr_reg_value ))
-	{
-		case 1:
-			printf( "MPort %d check unTag map\n",port_number );
-			break;
-
-		case 0:
-			printf( "MPort %d not check unTag map\n",port_number );
-			break;
-		default:
-			perror("read");
-	}
-
-	switch ( port_number )
-	{
-		case PORT_5:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_5_FWD;
-			break;
-		case PORT_4:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_4_FWD;
-			break;
-		case PORT_3:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_3_FWD;
-			break;
-		case PORT_2:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_2_FWD;
-			break;
-		case PORT_1:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_1_FWD;
-			break;
-		case PORT_0:
-			multi_port_addr_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_VLAN_MULITI_ADDR_PORT_0_FWD;
-			break;
-		default :
-			perror("NO port");
-	}
-
-	switch(chip_func_read( &multi_port_addr_reg_value ))
-	{
-		case 1:
-			printf( "MPort %d map FWD\n",port_number );
-			break;
-
-		case 0:
-			printf( "MPort %d map unFWD\n",port_number );
-			break;
-		default:
-			perror("read");
-	}
-
-	return 0;
-}
-
-/*description: write vlan egress vid remark table access*/
-static BCM_FUNC_OP_T bcm_vlan_egress_VID_remark_table_access_write( BCM_VLAN_EGRESS_VID_RMK_TBL_ACS_T *table )
-{
-	BCM_SPI_PAGE_VLAN_T reg_value = 0;
-
-	reg_value += (table->table_address << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_ACS_ADR);
-	reg_value += (table->egress_port << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_ACS_EPORT);
-	reg_value += (table->operation << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_ACS_OPT);
-	reg_value += (table->start_done << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_ACS_START);
-
-	return chip_register_write(BCM_SPI_PAGE_VLAN,  BCM_SPI_OFFSET_VLAN_EGRESS_VID_RMK_TBL_ACS, reg_value);
-}
-
-/*description : vlan table entry untag map write*/
-static BCM_FUNC_OP_T bcm_vlan_egress_VID_remark_table_data_write( BCM_VLAN_EGRESS_VID_RMK_TBL_DAT_T *data )
-{
-	BCM_SPI_PAGE_VLAN_T reg_value = 0;
-
-	reg_value += (data->outer_tag_operation << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_DAT_OUT_TAG);
-	reg_value += (data->outer_VID << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_DAT_OUT_VID);
-	reg_value += (data->inner_tag_operation << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_DAT_IN_TAG);
-	reg_value += (data->inner_VID << BCM_BIT_OFFSET_VLAN_EGRESS_VID_RMK_TBL_DAT_IN_VID);
-
-	return chip_register_write(BCM_SPI_PAGE_VLAN,  BCM_SPI_OFFSET_VLAN_EGRESS_VID_RMK_TBL_DAT, reg_value);
 }
 
 /*description: write vlan mst table*/
 static BCM_FUNC_OP_T bcm_vlan_mst_table_write(BCM_PORT_T port_number, BCM_REG_T mode)
 {
-	BCM_REG_ADDR_T mst_table_reg_value;
+	BCM_FUNC_OP_T ret;
+	bcm_func_t * mst_table;
 
-	mst_table_reg_value.spi_page =   BCM_MSTP_REG;
-	mst_table_reg_value.spi_offset = BCM_SPI_OFFSET_MSPT;
+	mst_table = (bcm_func_t *)malloc(sizeof(bcm_func_t));
 
-	mst_table_reg_value.bit_wide = BCM_CHIP_BIT_3;
+	mst_table->address.spi_page = BCM_MSTP_REG;
+	mst_table->address.spi_offset = BCM_SPI_OFFSET_MSPT;
+	mst_table->address.bit_wide = BCM_CHIP_BIT_3;
+
+	mst_table->address.func_value = mode;
+
+	mst_table->function_write = chip_func_write;
 
 	switch ( port_number )
 	{
 		case PORT_0:
-			mst_table_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_MST_TAB_PORT_0;
+			mst_table->address.bit_offset = BCM_BIT_OFFSET_MST_TAB_PORT_0;
 			break;
 		case PORT_1:
-			mst_table_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_MST_TAB_PORT_1;
+			mst_table->address.bit_offset = BCM_BIT_OFFSET_MST_TAB_PORT_1;
 			break;
 		case PORT_2:
-			mst_table_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_MST_TAB_PORT_2;
+			mst_table->address.bit_offset = BCM_BIT_OFFSET_MST_TAB_PORT_2;
 			break;
 		case PORT_3:
-			mst_table_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_MST_TAB_PORT_3;
+			mst_table->address.bit_offset = BCM_BIT_OFFSET_MST_TAB_PORT_3;
 			break;
 		case PORT_4:
-			mst_table_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_MST_TAB_PORT_4;
+			mst_table->address.bit_offset = BCM_BIT_OFFSET_MST_TAB_PORT_4;
 			break;
 		case PORT_5:
-			mst_table_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_MST_TAB_PORT_5;
+			mst_table->address.bit_offset = BCM_BIT_OFFSET_MST_TAB_PORT_5;
 			break;
 		case PORT_7:
-			mst_table_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_MST_TAB_PORT_7;
+			mst_table->address.bit_offset = BCM_BIT_OFFSET_MST_TAB_PORT_7;
 			break;
 	}
 
-	return chip_func_write( &mst_table_reg_value, mode );
+
+	ret = mst_table->function_write( &mst_table->address, mst_table->address.func_value );
+
+	free(mst_table);
+
+	return ret;
 }
 
 /*description: read vlan mst table*/
@@ -2144,153 +1770,6 @@ static BCM_REG_T bcm_vlan_join_all_vlan_en_read(BCM_PORT_T port_number)
 			break;
 		case VLAN_ALL_JOIN_DISABLE:
 			printf("Port %d VLAN join Disable\n",port_number);
-			break;
-		default:
-			printf("error\n");
-	}
-
-	return mode;
-}
-
-/*description: wrtie double tag function*/
-static BCM_REG_T bcm_vlan_double_tag_write(BCM_REG_T enable)
-{
-    
-	BCM_REG_ADDR_T ctrl_4_reg_value;
-
-	ctrl_4_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	ctrl_4_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_4;
-	ctrl_4_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_DOUBLE_TAG;
-	ctrl_4_reg_value.bit_wide =   BCM_CHIP_BIT_2;
-
-	return chip_func_write( &ctrl_4_reg_value, enable );
-}
-
-/*description: read double tag function*/
-static BCM_REG_T bcm_vlan_double_tag_read()
-{
-	BCM_REG_T mode;
-	BCM_REG_ADDR_T ctrl_4_reg_value;
-
-	ctrl_4_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	ctrl_4_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_CTRL_4;
-	ctrl_4_reg_value.bit_offset = BCM_VLAN_BIT_OFFSET_DOUBLE_TAG;
-	ctrl_4_reg_value.bit_wide =   BCM_CHIP_BIT_2;
-
-	mode = chip_func_read( &ctrl_4_reg_value );
-
-	switch ( mode )
-	{
-		case DT_MODE_ENABLE:
-			printf("DT mode Enable\n");
-			break;
-		case IDT_MODE_ENABLE:
-			printf("IDT mode Enable\n");
-			break;
-		case DOUBLE_TAG_DISABLE:
-			printf("Double tag Disable\n");
-			break;
-		default:
-			printf("Double\n");
-	}
-
-	return mode;
-}
-
-/*description: write multi port type*/
-static BCM_REG_T bcm_vlan_ISP_port_write(BCM_PORT_T port_number, BCM_REG_T mode )
-{
-	BCM_REG_ADDR_T isp_port_reg_value;
-
-	isp_port_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	isp_port_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_ISP_PORTMAP;
-	isp_port_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-
-	switch ( port_number )
-    {
-        case PORT_0:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_0;
-            break;
-        case PORT_1:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_1;
-            break;
-        case PORT_2:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_2;
-            break;
-        case PORT_3:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_3;
-            break;
-        case PORT_4:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_4;
-            break;
-        case PORT_5:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_5;
-            break;
-        case PORT_6:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_6;
-            break;
-        case PORT_7:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_7;
-            break;
-        case IMP:
-            isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_8;
-            break;
-    }
-
-	return chip_func_write( &isp_port_reg_value, mode );
-}
-
-/*description: read mulit port is ISP or customer port*/
-static BCM_REG_T bcm_vlan_ISP_port_read(BCM_PORT_T port_number )
-{
-	BCM_REG_T mode;
-	BCM_REG_ADDR_T isp_port_reg_value;
-
-	isp_port_reg_value.spi_page =   BCM_SPI_PAGE_VLAN;
-	isp_port_reg_value.spi_offset = BCM_SPI_OFFSET_VLAN_ISP_PORTMAP;
-	isp_port_reg_value.bit_wide =   BCM_CHIP_BIT_1;
-
-	switch ( port_number )
-	{
-		case PORT_0:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_0;
-			break;
-		case PORT_1:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_1;
-			break;
-		case PORT_2:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_2;
-			break;
-		case PORT_3:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_3;
-			break;
-		case PORT_4:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_4;
-			break;
-		case PORT_5:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_5;
-			break;
-		case PORT_6:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_6;
-			break;
-		case PORT_7:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_7;
-			break;
-		case IMP:
-			isp_port_reg_value.bit_offset = ( BCM_PORT_REG_T )BCM_BIT_OFFSET_JOIN_ALL_VLAN_PORT_8;
-			break;
-	}
-
-	mode = chip_func_read( &isp_port_reg_value );
-
-	switch ( mode )
-	{
-		case ISP_PORT:
-			printf("Port %d is ISP port\n",port_number);
-			break;
-		case CUSTOMER_PORT:
-			printf("Port %d VLAN customer port \n",port_number);
 			break;
 		default:
 			printf("error\n");

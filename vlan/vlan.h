@@ -21,6 +21,8 @@ typedef uint16_t BCM_VLAN_VTBL_ADDR_T;
 typedef uint16_t BCM_VLAN_PVID_T;
 typedef uint32_t BCM_VLAN_T;
 
+typedef BCM_PORT_T BCM_PORT_GROUP_T[NUM_PORT];
+
 enum _BCM_VLAN_NUM
 {
 	VLAN_0 = 1,
@@ -201,6 +203,9 @@ typedef enum _BCM_SPI_PAGE_VLAN_BIT_OFFSET
 	BCM_BIT_OFFSET_VTBL_CTRL_FWD_MODE = 21,
 	BCM_BIT_OFFSET_VTBL_CTRL_STDN = 7,
 	BCM_BIT_OFFSET_VTBL_CTRL_RWCL = 0,
+
+	/*vlan table index*/
+	BCM_BIT_OFFSET_VTBL_INDEX = 0,
 
 	/*vlan table entry*/
 	BCM_BIT_OFFSET_VTBL_ENTRY_FWD_MOD = 21,
@@ -406,6 +411,12 @@ typedef struct {
 	BCM_REG_T       vlan_mode;
 	BCM_REG_T       mst_mode;
 }bcm_vlan_creat_data_t;
+
+typedef struct {
+	BCM_PORT_GROUP_T port_group;
+	BCM_VLAN_PVID_T  pvid;
+	BCM_REG_T       mst_mode;
+};
 
 typedef struct _bcm_vlan_creat
 {
