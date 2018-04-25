@@ -27,7 +27,6 @@ extern BCM_PORT_WORK_STATUS_T * g_p_bcm_port_2_work_status;
 extern BCM_PORT_WORK_STATUS_T * g_p_bcm_port_3_work_status;
 extern BCM_PORT_WORK_STATUS_T * g_p_bcm_port_imp_work_status;
 
-
 /****************************************************************************************************/
 /*description: chip initialization
 */
